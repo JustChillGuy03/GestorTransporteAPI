@@ -112,23 +112,6 @@ Crear vehículo:
 - Un Id que no existe devuelve **404 Not Found**.
 - La API nunca devuelve las entidades directamente, siempre DTOs de respuesta.
 
-## Cómo ejecutar
-
-Requisitos: **.NET 10 SDK** y **SQL Server LocalDB** (viene con Visual Studio).
-
-```bash
-git clone https://github.com/JustChillGuy03/GestorTransporteAPI.git
-cd GestorTransporteAPI
-dotnet tool restore
-dotnet run --project GestorTransporteAPI
-```
-
-Luego abrir **http://localhost:5041/swagger**.
-
-- En el entorno Development, la aplicación aplica las migraciones al iniciar: crea la base de datos `GestorTransporteCrudDB` y carga 2 choferes y 2 vehículos de ejemplo.
-- Para crear la base de datos manualmente: `dotnet ef database update --project GestorTransporteAPI` (o `Update-Database` en la Consola del Administrador de paquetes de Visual Studio).
-- Con Visual Studio: abrir `GestorTransporteAPI.slnx` y presionar **F5**.
-- Para usar otra instancia de SQL Server, cambiar `ConnectionStrings:DefaultConnection` en `appsettings.json`.
 
 ## Pruebas
 
