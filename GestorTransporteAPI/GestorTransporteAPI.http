@@ -1,0 +1,110 @@
+@host = http://localhost:5041
+
+### ===================== CHOFERES =====================
+
+### Listar todos los choferes
+GET {{host}}/api/Choferes
+Accept: application/json
+
+### Obtener un chofer por Id
+GET {{host}}/api/Choferes/1
+Accept: application/json
+
+### Vehículos asignados a un chofer
+GET {{host}}/api/Choferes/1/vehiculos
+Accept: application/json
+
+### Crear un chofer
+POST {{host}}/api/Choferes
+Content-Type: application/json
+
+{
+  "nombre": "Carlos Martínez",
+  "licencia": "LIC-00003",
+  "telefono": "849-555-0303"
+}
+
+### Actualizar un chofer
+PUT {{host}}/api/Choferes/3
+Content-Type: application/json
+
+{
+  "nombre": "Carlos Martínez Gómez",
+  "licencia": "LIC-00003",
+  "telefono": "849-555-0333"
+}
+
+### Eliminar un chofer (409 si todavía tiene vehículos)
+DELETE {{host}}/api/Choferes/3
+
+### ===================== VEHICULOS =====================
+
+### Listar todos los vehículos
+GET {{host}}/api/Vehiculos
+Accept: application/json
+
+### Obtener un vehículo por Id
+GET {{host}}/api/Vehiculos/1
+Accept: application/json
+
+### Crear un vehículo
+POST {{host}}/api/Vehiculos
+Content-Type: application/json
+
+{
+  "marca": "Nissan",
+  "modelo": "Urvan",
+  "placa": "A100003",
+  "capacidad": 12,
+  "choferId": 1
+}
+
+### Actualizar un vehículo
+PUT {{host}}/api/Vehiculos/3
+Content-Type: application/json
+
+{
+  "marca": "Nissan",
+  "modelo": "Urvan NV350",
+  "placa": "A100003",
+  "capacidad": 14,
+  "choferId": 2
+}
+
+### Eliminar un vehículo
+DELETE {{host}}/api/Vehiculos/3
+
+### ===================== VALIDACIONES =====================
+
+### 400: datos inválidos (nombre vacío, licencia corta)
+POST {{host}}/api/Choferes
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "licencia": "123"
+}
+
+### 400: el chofer indicado no existe
+POST {{host}}/api/Vehiculos
+Content-Type: application/json
+
+{
+  "marca": "Kia",
+  "modelo": "Granbird",
+  "placa": "A100099",
+  "capacidad": 40,
+  "choferId": 999
+}
+
+### 409: placa repetida
+POST {{host}}/api/Vehiculos
+Content-Type: application/json
+
+{
+  "marca": "Toyota",
+  "modelo": "Coaster",
+  "placa": "A100001",
+  "capacidad": 25,
+  "choferId": 1
+}
